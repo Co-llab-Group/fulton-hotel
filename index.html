@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fulton Hotel — Phase Zero Feasibility Report | The Co-Llab Group</title>
+  <meta name="description" content="Phase Zero Feasibility Report for the Fulton Hotel Rebrand at 2208-2210 Fulton Avenue, Cincinnati, Ohio.">
+  <style>
+    /* ──────────────────────────────────────────────────────
+       RESET & VARIABLES
+       ────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --emerald: #059669;
+      --emerald-dark: #064E3B;
+      --emerald-accent: #10B981;
+      --emerald-light: #D1FAE5;
+      --slate-900: #0F172A;
+      --slate-800: #1E293B;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --slate-400: #94A3B8;
+      --slate-300: #CBD5E1;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+      --slate-50: #F8FAFC;
+      --white: #FFFFFF;
+      --nav-height: 60px;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--slate-800);
+      line-height: 1.65;
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       TYPOGRAPHY
+       ────────────────────────────────────────────────────── */
+    h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+    h2 { font-size: 2rem; font-weight: 700; color: var(--emerald-dark); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    h3 { font-size: 1.25rem; font-weight: 600; color: var(--slate-800); margin-bottom: 0.6rem; }
+    h4 { font-size: 0.85rem; font-weight: 700; color: var(--slate-600); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    p { margin-bottom: 1rem; }
+    ul { padding-left: 1.3rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.35rem; }
+
+    /* ──────────────────────────────────────────────────────
+       STICKY NAV
+       ────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+      background: transparent;
+    }
+    .nav.scrolled {
+      background: var(--emerald-dark);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+    }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--emerald-accent);
+      border-radius: 1px;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--emerald-dark);
+      padding: 1rem 2rem 2rem;
+      flex-direction: column;
+      gap: 0.8rem;
+      z-index: 999;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-mobile-menu a:hover { color: var(--white); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ──────────────────────────────────────────────────────
+       COVER / HERO
+       ────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('renderings/front-facade-v1.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: 0;
+    }
+    @supports (-webkit-touch-callout: none) {
+      .hero-bg { background-attachment: scroll; }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(6,78,59,0.55) 0%,
+        rgba(15,23,42,0.80) 60%,
+        rgba(15,23,42,0.92) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 2rem;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-brand {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+      color: var(--emerald-accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      margin-bottom: 1rem;
+    }
+    .hero-address {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.3rem;
+    }
+    .hero-neighborhood {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2rem;
+    }
+    .hero-date {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-line {
+      width: 50px;
+      height: 3px;
+      background: var(--emerald);
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .hero-scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid rgba(255,255,255,0.45);
+      border-bottom: 2px solid rgba(255,255,255,0.45);
+      transform: rotate(45deg);
+      animation: bounce-down 2s infinite;
+    }
+    @keyframes bounce-down {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(6px); }
+    }
+    .hero-confidential {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2rem;
+      z-index: 2;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       SECTIONS
+       ────────────────────────────────────────────────────── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-wide {
+      max-width: 1100px;
+    }
+    .section-gray {
+      background: var(--slate-50);
+    }
+    .section-gray .section {
+      max-width: 1000px;
+    }
+    .section-full-gray {
+      background: var(--slate-50);
+      padding: 5rem 2rem;
+    }
+    .section-num {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 0.3rem;
+    }
+    .section-divider {
+      width: 45px;
+      height: 3px;
+      background: var(--emerald);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ──────────────────────────────────────────────────────
+       TABLES
+       ────────────────────────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 500px;
+    }
+    thead th {
+      background: var(--emerald-dark);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--slate-50); }
+    .row-bold td { font-weight: 700; background: var(--emerald-light) !important; }
+    .row-sub td { padding-left: 2.2rem; color: var(--slate-600); }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* ──────────────────────────────────────────────────────
+       IMAGES & LIGHTBOX
+       ────────────────────────────────────────────────────── */
+    .img-full {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .img-full:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .img-half {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .img-half:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .img-grid {
+      display: grid;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .img-grid-2 { grid-template-columns: 1fr 1fr; }
+    .img-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .img-caption {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      margin-top: 0.5rem;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .img-block { margin-bottom: 1.5rem; }
+
+    /* Before/After */
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .before-after-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .label-before { background: var(--slate-200); color: var(--slate-700); }
+    .label-after { background: var(--emerald); color: var(--white); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.open {
+      display: flex;
+      opacity: 1;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      font-style: italic;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       METRIC BOXES (animated counters)
+       ────────────────────────────────────────────────────── */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+    .metric-box {
+      background: linear-gradient(135deg, var(--emerald-dark), var(--slate-900));
+      color: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(6,78,59,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .metric-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(6,78,59,0.3);
+    }
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.75;
+      margin-top: 0.35rem;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       EXEC SUMMARY GRID
+       ────────────────────────────────────────────────────── */
+    .exec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .exec-numbers {
+      background: var(--slate-50);
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      border: 1px solid var(--slate-200);
+    }
+    .exec-numbers li {
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+      list-style: none;
+      padding-left: 0;
+    }
+    .exec-numbers ul { padding-left: 0; }
+
+    /* ──────────────────────────────────────────────────────
+       TIMELINE
+       ────────────────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 2.5rem; margin: 2rem 0; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.65rem;
+      top: 0.3rem;
+      bottom: 0.3rem;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--emerald), var(--emerald-accent));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 0.5rem;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -2rem;
+      top: 0.4rem;
+      width: 13px;
+      height: 13px;
+      background: var(--emerald);
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--emerald);
+    }
+    .timeline-period {
+      font-weight: 700;
+      color: var(--emerald-dark);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .timeline-desc {
+      color: var(--slate-700);
+      font-size: 0.95rem;
+      margin-top: 0.15rem;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       RISK TABLE
+       ────────────────────────────────────────────────────── */
+    .risk-high { color: #DC2626; font-weight: 600; }
+    .risk-med { color: #D97706; font-weight: 600; }
+    .risk-low { color: var(--emerald); font-weight: 600; }
+
+    /* Accordion rows */
+    .risk-row { cursor: pointer; transition: background 0.2s; }
+    .risk-row:hover { background: var(--slate-100) !important; }
+    .risk-row td:first-child { position: relative; padding-left: 2rem; }
+    .risk-row td:first-child::before {
+      content: '+';
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 700;
+      color: var(--emerald);
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+    .risk-row.expanded td:first-child::before {
+      content: '\2212';
+    }
+    .risk-detail {
+      display: none;
+    }
+    .risk-detail td {
+      padding: 0.8rem 1rem 0.8rem 2rem;
+      background: var(--emerald-light) !important;
+      color: var(--slate-700);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .risk-detail.visible { display: table-row; }
+
+    /* ──────────────────────────────────────────────────────
+       ACCORDION (Budget)
+       ────────────────────────────────────────────────────── */
+    .accordion-trigger {
+      cursor: pointer;
+      user-select: none;
+    }
+    .accordion-trigger td:first-child {
+      position: relative;
+      padding-left: 2.2rem;
+    }
+    .accordion-trigger td:first-child::before {
+      content: '\25B6';
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.6rem;
+      color: var(--emerald);
+      transition: transform 0.3s;
+    }
+    .accordion-trigger.expanded td:first-child::before {
+      transform: translateY(-50%) rotate(90deg);
+    }
+    .accordion-child {
+      display: none;
+    }
+    .accordion-child.visible {
+      display: table-row;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       CHECKLIST & STEPS
+       ────────────────────────────────────────────────────── */
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .checklist li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--emerald);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      padding-left: 2.5rem;
+      position: relative;
+      margin-bottom: 0.65rem;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.05rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: var(--emerald);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       CALLOUT / QUOTE BAR
+       ────────────────────────────────────────────────────── */
+    .callout {
+      font-size: 1.05rem;
+      color: var(--slate-700);
+      border-left: 4px solid var(--emerald);
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      background: var(--slate-50);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       SERVICES BOX
+       ────────────────────────────────────────────────────── */
+    .services-box {
+      background: var(--emerald-light);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-top: 2rem;
+      border: 1px solid rgba(5,150,105,0.15);
+    }
+
+    /* ──────────────────────────────────────────────────────
+       DOWNLOAD FAB
+       ────────────────────────────────────────────────────── */
+    .download-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+    .download-fab-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--emerald);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(5,150,105,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      font-size: 1.4rem;
+    }
+    .download-fab-btn:hover {
+      background: var(--emerald-dark);
+      transform: scale(1.08);
+    }
+    .download-menu {
+      display: none;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      padding: 0.6rem 0;
+      min-width: 240px;
+      border: 1px solid var(--slate-200);
+    }
+    .download-menu.open { display: block; }
+    .download-menu a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.2rem;
+      text-decoration: none;
+      color: var(--slate-700);
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    .download-menu a:hover {
+      background: var(--slate-50);
+      color: var(--emerald-dark);
+    }
+    .download-menu-icon {
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       FOOTER
+       ────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--slate-900);
+      color: rgba(255,255,255,0.6);
+      padding: 4rem 2rem 3rem;
+    }
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .footer-logo-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: var(--emerald-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .footer p { font-size: 0.88rem; line-height: 1.7; }
+    .footer strong { color: rgba(255,255,255,0.85); }
+    .footer-contact {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-contact a {
+      color: var(--emerald-accent);
+      text-decoration: none;
+    }
+    .footer-contact a:hover { text-decoration: underline; }
+    .footer-confidential {
+      margin-top: 2.5rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+    }
+    .footer-cta {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.7rem 2rem;
+      background: var(--emerald);
+      color: var(--white);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .footer-cta:hover { background: var(--emerald-accent); }
+
+    /* ──────────────────────────────────────────────────────
+       RESPONSIVE
+       ────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .exec-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .img-grid-3 { grid-template-columns: 1fr 1fr; }
+      .section { padding: 3.5rem 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.5rem; }
+      .metrics-row { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .metric-value { font-size: 1.4rem; }
+      .img-grid-2,
+      .img-grid-3 { grid-template-columns: 1fr; }
+      .before-after { grid-template-columns: 1fr; }
+      .section { padding: 2.5rem 1rem; }
+      .hero-confidential { display: none; }
+      .download-fab { bottom: 1rem; right: 1rem; }
+    }
+
+    /* ──────────────────────────────────────────────────────
+       PRINT (minimal)
+       ────────────────────────────────────────────────────── */
+    @media print {
+      .nav, .download-fab, .hero-scroll, .lightbox { display: none !important; }
+      .hero { min-height: auto; padding: 3rem 2rem; page-break-after: always; }
+      .hero-bg { display: none; }
+      .hero-overlay { background: var(--emerald-dark); }
+      .section { padding: 2rem 0; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-logo">The Co-Llab Group</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#overview" data-section="overview">Overview</a></li>
+      <li><a href="#concept" data-section="concept">Concept</a></li>
+      <li><a href="#design" data-section="design">Design</a></li>
+      <li><a href="#financials" data-section="financials">Financials</a></li>
+      <li><a href="#timeline" data-section="timeline">Timeline</a></li>
+      <li><a href="#contact" data-section="contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#overview">Overview</a>
+    <a href="#concept">Concept</a>
+    <a href="#design">Design</a>
+    <a href="#financials">Financials</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO / COVER
+       ═══════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">A Phase Zero Advisory Engagement</div>
+      <div class="hero-brand">The Co-Llab Group</div>
+      <div class="hero-line"></div>
+      <h1>Fulton Hotel Rebrand</h1>
+      <div class="hero-address">2208-2210 Fulton Avenue, Cincinnati, Ohio 45206</div>
+      <div class="hero-neighborhood">East Walnut Hills</div>
+      <div class="hero-line"></div>
+      <div class="hero-date">April 2026</div>
+    </div>
+    <a href="#overview" class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-arrow"></div>
+    </a>
+    <div class="hero-confidential">Confidential &mdash; Prepared for [Client Name]</div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 01: EXECUTIVE SUMMARY
+       ═══════════════════════════════════════════════════════ -->
+  <section id="overview">
+    <div class="section">
+      <div class="reveal">
+        <div class="section-num">Section 01</div>
+        <h2>Executive Summary</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <h3>The Opportunity</h3>
+        <p>Convert an existing 3-story hotel at 2208-2210 Fulton Avenue into 16 premium micro-suites (12 standard + 4 loft) targeting traveling professionals, healthcare workers, and extended-stay guests. The property is already owned (zero acquisition cost), and zoning (RMX-MH) allows by-right conversion with no parking minimums and no density limits.</p>
+      </div>
+
+      <div class="exec-grid reveal">
+        <div>
+          <h3>The Numbers</h3>
+          <div class="exec-numbers">
+            <ul>
+              <li><strong>Total Project Cost:</strong> $1.72M</li>
+              <li><strong>Capital Stack:</strong> 75% debt / 25% equity ($429K)</li>
+              <li><strong>Year 1 NOI:</strong> ~$269K</li>
+              <li><strong>Stabilized NOI:</strong> ~$384K</li>
+              <li><strong>Stabilized Cash-on-Cash:</strong> 43.5%</li>
+              <li><strong>DSCR:</strong> 1.54x (Yr 1) &rarr; 2.50x (Stabilized)</li>
+              <li><strong>Construction:</strong> 9 months</li>
+              <li><strong>Breakeven:</strong> ~65% occupancy</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h3>The Recommendation</h3>
+          <p><strong>Proceed to design development.</strong> The deal fundamentals are strong&mdash;zero basis, favorable zoning, multiple revenue channels (nightly, weekly, monthly), and a stabilized cash-on-cash well above market.</p>
+          <p>Key risks (occupancy ramp, construction costs) are manageable with the 10% contingency and conservative underwriting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 02: PROPERTY OVERVIEW
+       ═══════════════════════════════════════════════════════ -->
+  <div class="section-full-gray" id="property">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <div class="reveal">
+        <div class="section-num">Section 02</div>
+        <h2>Property Overview</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td style="width:35%; font-weight:600; color:var(--slate-600);">Address</td><td>2208-2210 Fulton Avenue</td></tr>
+              <tr><td style="font-weight:600; color:var(--slate-600);">Neighborhood</td><td>East Walnut Hills</td></tr>
+              <tr><td style="font-weight:600; color:var(--slate-600);">Zoning</td><td>RMX-MH (Residential Mixed Use + Middle Housing Overlay)</td></tr>
+              <tr><td style="font-weight:600; color:var(--slate-600);">Building</td><td>3 stories, ~12,000 SF</td></tr>
+              <tr><td style="font-weight:600; color:var(--slate-600);">Lot</td><td>Includes adjacent vacant parcel for parking</td></tr>
+              <tr><td style="font-weight:600; color:var(--slate-600);">Current Use</td><td>Hotel (operating)</td></tr>
+              <tr><td style="font-weight:600; color:var(--slate-600);">Proposed Use</td><td>16 premium micro-suites</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3>Zoning Advantages</h3>
+        <ul>
+          <li>No minimum parking requirements</li>
+          <li>No maximum density limits</li>
+          <li>By-right conversion&mdash;no variances or special permits required</li>
+          <li>Connected Communities / Middle Housing overlay enables flexible unit configurations</li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3>Existing Conditions</h3>
+        <div class="img-grid img-grid-3">
+          <div class="img-block">
+            <img src="site-photos/front-facade.jpeg" alt="Front facade of 2208 Fulton Avenue" class="img-half" loading="lazy" data-caption="Front facade from Fulton Avenue">
+            <div class="img-caption">Front facade from Fulton Avenue</div>
+          </div>
+          <div class="img-block">
+            <img src="site-photos/rear-side-view.jpeg" alt="Rear and side view" class="img-half" loading="lazy" data-caption="Rear / side elevation">
+            <div class="img-caption">Rear / side elevation</div>
+          </div>
+          <div class="img-block">
+            <img src="site-photos/aerial-view.jpeg" alt="Aerial view of property" class="img-half" loading="lazy" data-caption="Aerial view showing adjacent lot">
+            <div class="img-caption">Aerial view showing adjacent lot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 03: THE CONCEPT
+       ═══════════════════════════════════════════════════════ -->
+  <section id="concept">
+    <div class="section">
+      <div class="reveal">
+        <div class="section-num">Section 03</div>
+        <h2>The Concept</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="callout">
+          Premium micro-suites designed for modern professionals who need more than a hotel room but less than a full apartment. Each unit is a self-contained living space with kitchenette, workspace, and private bathroom.
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3>Unit Mix</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Type</th><th class="num">Count</th><th class="num">Size</th><th class="num">Nightly Rate</th><th>Features</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Standard Suite</td><td class="num">12</td><td class="num">~300 SF</td><td class="num">$139</td><td>Kitchenette, workspace, full bath</td></tr>
+              <tr><td>Loft Suite</td><td class="num">4</td><td class="num">~500 SF</td><td class="num">$189</td><td>Two-level, living area + sleeping loft</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="exec-grid reveal">
+        <div>
+          <h3>Revenue Model</h3>
+          <ul>
+            <li><strong>Nightly:</strong> Airbnb, Booking.com, direct ($139-189/night)</li>
+            <li><strong>Weekly:</strong> 15% discount ($118-161/night)</li>
+            <li><strong>Monthly:</strong> 35% discount ($90-123/night)</li>
+            <li><strong>Target mix:</strong> 25% nightly / 25% weekly / 50% monthly</li>
+            <li><strong>Channels:</strong> Airbnb, Furnished Finder, direct booking, corporate contracts</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Target Market</h3>
+          <ul>
+            <li>Traveling nurses &amp; healthcare professionals (nearby hospitals)</li>
+            <li>Business travelers &amp; consultants</li>
+            <li>Relocating professionals (month-to-month flexibility)</li>
+            <li>Visiting faculty &amp; researchers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3>Interior Concept</h3>
+        <div class="img-grid img-grid-3">
+          <div class="img-block">
+            <img src="renderings/standard-suite-v1.jpeg" alt="Standard suite rendering" class="img-half" loading="lazy" data-caption="Standard Suite (~300 SF)">
+            <div class="img-caption">Standard Suite (~300 SF)</div>
+          </div>
+          <div class="img-block">
+            <img src="renderings/loft-lower-v1.jpeg" alt="Loft suite lower level" class="img-half" loading="lazy" data-caption="Loft Suite -- lower living area">
+            <div class="img-caption">Loft Suite &mdash; lower living area</div>
+          </div>
+          <div class="img-block">
+            <img src="renderings/loft-upper-v1.jpeg" alt="Loft suite upper level" class="img-half" loading="lazy" data-caption="Loft Suite -- upper sleeping loft">
+            <div class="img-caption">Loft Suite &mdash; upper sleeping loft</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 04: DESIGN VISION
+       ═══════════════════════════════════════════════════════ -->
+  <div class="section-full-gray" id="design">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <div class="reveal">
+        <div class="section-num">Section 04</div>
+        <h2>Design Vision</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- Before / After: Front Facade -->
+      <div class="reveal">
+        <h3>Front Facade</h3>
+        <div class="before-after">
+          <div>
+            <span class="before-after-label label-before">Before</span>
+            <img src="site-photos/front-facade.jpeg" alt="Current front facade" class="img-half" loading="lazy" data-caption="Current front facade">
+          </div>
+          <div>
+            <span class="before-after-label label-after">After</span>
+            <img src="renderings/front-facade-v1.jpeg" alt="Renovated front facade rendering" class="img-half" loading="lazy" data-caption="Renovated front facade rendering">
+          </div>
+        </div>
+        <div class="img-caption" style="margin-top: -0.5rem; margin-bottom: 2rem;">The renovated facade restores the building's historic character while introducing modern signage, lighting, and a welcoming street presence on Fulton Avenue.</div>
+      </div>
+
+      <div class="reveal">
+        <div class="img-grid img-grid-2" style="margin-top: 1rem;">
+          <div class="img-block">
+            <img src="renderings/lobby-v1.jpeg" alt="Lobby and reception rendering" class="img-half" loading="lazy" data-caption="Lobby & Reception -- A warm, modern check-in experience">
+            <div class="img-caption">Lobby &amp; Reception &mdash; A warm, modern check-in experience with curated materials and residential-scale furnishings.</div>
+          </div>
+          <div class="img-block">
+            <img src="renderings/basement-lounge-v1.jpeg" alt="Basement lounge rendering" class="img-half" loading="lazy" data-caption="Common Lounge -- A flexible co-working and community space">
+            <div class="img-caption">Common Lounge &mdash; A flexible co-working and community space in the lower level, available to all guests.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 05: RENOVATION BUDGET (Accordion)
+       ═══════════════════════════════════════════════════════ -->
+  <section id="financials">
+    <div class="section">
+      <div class="reveal">
+        <div class="section-num">Section 05</div>
+        <h2>Renovation Budget</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="table-wrap">
+          <table id="budgetTable">
+            <thead>
+              <tr><th>Category</th><th class="num">Budget</th></tr>
+            </thead>
+            <tbody>
+              <!-- Unit Renovations -->
+              <tr class="accordion-trigger" data-group="units">
+                <td style="font-weight:700; color:var(--emerald-dark); background:var(--emerald-light);">Unit Renovations</td>
+                <td class="num" style="font-weight:700; background:var(--emerald-light);">$616,000</td>
+              </tr>
+              <tr class="accordion-child row-sub" data-group="units"><td>Standard Rooms (12 &times; $30K)</td><td class="num">$360,000</td></tr>
+              <tr class="accordion-child row-sub" data-group="units"><td>Loft Conversions (4 &times; $60K)</td><td class="num">$240,000</td></tr>
+              <tr class="accordion-child row-sub" data-group="units"><td>ADA Compliance (2 units)</td><td class="num">$16,000</td></tr>
+
+              <!-- Common Areas -->
+              <tr class="accordion-trigger" data-group="common">
+                <td style="font-weight:700; color:var(--emerald-dark); background:var(--emerald-light);">Common Areas</td>
+                <td class="num" style="font-weight:700; background:var(--emerald-light);">$315,000</td>
+              </tr>
+              <tr class="accordion-child row-sub" data-group="common"><td>Lobby, Hallways, Porch</td><td class="num">$140,000</td></tr>
+              <tr class="accordion-child row-sub" data-group="common"><td>Basement Lounge</td><td class="num">$115,000</td></tr>
+              <tr class="accordion-child row-sub" data-group="common"><td>Rooftop Deck (optional)</td><td class="num">$60,000</td></tr>
+
+              <!-- Building Systems -->
+              <tr class="accordion-trigger" data-group="systems">
+                <td style="font-weight:700; color:var(--emerald-dark); background:var(--emerald-light);">Building Systems</td>
+                <td class="num" style="font-weight:700; background:var(--emerald-light);">$320,000</td>
+              </tr>
+              <tr class="accordion-child row-sub" data-group="systems"><td>HVAC, Electrical, Plumbing</td><td class="num">$240,000</td></tr>
+              <tr class="accordion-child row-sub" data-group="systems"><td>Fire Safety, Security, WiFi</td><td class="num">$80,000</td></tr>
+
+              <!-- Exterior -->
+              <tr class="accordion-trigger" data-group="exterior">
+                <td style="font-weight:700; color:var(--emerald-dark); background:var(--emerald-light);">Exterior</td>
+                <td class="num" style="font-weight:700; background:var(--emerald-light);">$105,000</td>
+              </tr>
+              <tr class="accordion-child row-sub" data-group="exterior"><td>Facade, Parking, Signage, Lighting</td><td class="num">$105,000</td></tr>
+
+              <tr class="row-bold"><td>Subtotal Hard Costs</td><td class="num">$1,356,000</td></tr>
+
+              <tr><td>Architecture &amp; Engineering (8%)</td><td class="num">$108,480</td></tr>
+              <tr><td>Permits, Fees, Legal</td><td class="num">$25,000</td></tr>
+              <tr><td>Contingency (10%)</td><td class="num">$135,600</td></tr>
+
+              <tr class="row-bold"><td>Total Renovation Budget</td><td class="num">$1,625,080</td></tr>
+
+              <tr><td>Pre-Opening Costs</td><td class="num">$53,000</td></tr>
+              <tr><td>Capitalized Interest (9 mo.)</td><td class="num">~$37,400</td></tr>
+
+              <tr class="row-bold"><td>Total Project Cost</td><td class="num">~$1,715,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="text-align: center; color: var(--slate-500); font-size: 0.9rem;">Per-unit cost: <strong>~$107,200</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 06: CAPITAL STACK & FINANCING
+       ═══════════════════════════════════════════════════════ -->
+  <div class="section-full-gray">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <div class="reveal">
+        <div class="section-num">Section 06</div>
+        <h2>Capital Stack &amp; Financing</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <h3>Sources of Capital</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Source</th><th class="num">Amount</th><th class="num">%</th><th>Terms</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Senior Debt</td><td class="num">$1,286,600</td><td class="num">75%</td><td>7.5%, 20yr amortization, 5yr term</td></tr>
+              <tr><td>Sponsor Equity</td><td class="num">$128,700</td><td class="num">7.5%</td><td>&mdash;</td></tr>
+              <tr><td>Investor Equity</td><td class="num">$300,200</td><td class="num">17.5%</td><td>8% preferred return</td></tr>
+              <tr class="row-bold"><td>Total</td><td class="num">$1,715,500</td><td class="num">100%</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="exec-grid reveal">
+        <div>
+          <h3>Debt Service</h3>
+          <ul>
+            <li><strong>Monthly P&amp;I:</strong> ~$10,370</li>
+            <li><strong>Annual Debt Service:</strong> ~$124,400</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Investor Returns</h3>
+          <ul>
+            <li>8% preferred return (~$24K/year)</li>
+            <li>70/30 profit split after preferred</li>
+            <li>Projected equity multiple: 3.0x+ by Year 5</li>
+            <li>Simple payback: ~2.5 years</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 07: FINANCIAL PROJECTIONS
+       ═══════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section">
+      <div class="reveal">
+        <div class="section-num">Section 07</div>
+        <h2>Financial Projections</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <h3>5-Year Operating Summary</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Metric</th><th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th><th class="num">Year 4</th><th class="num">Year 5</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Avg Occupancy</td><td class="num">76%</td><td class="num">90%</td><td class="num">92%</td><td class="num">92%</td><td class="num">92%</td></tr>
+              <tr><td>Gross Revenue</td><td class="num">$536K</td><td class="num">$649K</td><td class="num">$683K</td><td class="num">$704K</td><td class="num">$725K</td></tr>
+              <tr><td>Operating Expenses</td><td class="num">$267K</td><td class="num">$289K</td><td class="num">$299K</td><td class="num">$307K</td><td class="num">$316K</td></tr>
+              <tr style="font-weight:600;"><td>NOI</td><td class="num">$269K</td><td class="num">$360K</td><td class="num">$384K</td><td class="num">$397K</td><td class="num">$409K</td></tr>
+              <tr><td>Debt Service</td><td class="num">$124K</td><td class="num">$124K</td><td class="num">$124K</td><td class="num">$124K</td><td class="num">$124K</td></tr>
+              <tr style="font-weight:600; color: var(--emerald-dark);"><td>Cash Flow</td><td class="num">$145K</td><td class="num">$236K</td><td class="num">$260K</td><td class="num">$273K</td><td class="num">$285K</td></tr>
+              <tr><td>Cash-on-Cash</td><td class="num">33.7%</td><td class="num">55.0%</td><td class="num">60.5%</td><td class="num">63.5%</td><td class="num">66.5%</td></tr>
+              <tr><td>DSCR</td><td class="num">2.16x</td><td class="num">2.90x</td><td class="num">3.09x</td><td class="num">3.19x</td><td class="num">3.29x</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--slate-500); font-style: italic;">Note: These are approximate projections. The attached pro forma workbook contains the live financial model with full formula linkage.</p>
+      </div>
+
+      <!-- Animated Metric Counters -->
+      <div class="metrics-row reveal" id="metricsRow">
+        <div class="metric-box">
+          <div class="metric-value" data-target="65" data-prefix="~" data-suffix="%">~0%</div>
+          <div class="metric-label">Breakeven Occupancy</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value" data-target="384" data-prefix="$" data-suffix="K">$0K</div>
+          <div class="metric-label">Stabilized NOI</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value" data-target="2.16" data-suffix="x" data-decimal="true">0x</div>
+          <div class="metric-label">Year 1 DSCR</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value" data-target="1.2" data-prefix="~$" data-suffix="M" data-decimal="true">~$0M</div>
+          <div class="metric-label">5-Year Cumulative Cash Flow</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 08: PROJECT TIMELINE
+       ═══════════════════════════════════════════════════════ -->
+  <div class="section-full-gray" id="timeline">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <div class="reveal">
+        <div class="section-num">Section 08</div>
+        <h2>Project Timeline</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-period">Months 1-3</div>
+            <div class="timeline-desc">Design &amp; permitting, contractor procurement</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Months 3-6</div>
+            <div class="timeline-desc">Core renovation &mdash; building systems, unit framing, rough-ins</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Months 6-8</div>
+            <div class="timeline-desc">Finishes &mdash; kitchens, baths, flooring, paint, common areas</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Months 7-8</div>
+            <div class="timeline-desc">Pre-opening &mdash; staff hiring, marketing, OTA setup</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Month 9</div>
+            <div class="timeline-desc">Final inspections, punch list, photography</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Month 10</div>
+            <div class="timeline-desc">Grand opening &mdash; operations begin at 60% occupancy</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Months 10-12</div>
+            <div class="timeline-desc">Ramp to 75% occupancy</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">Months 13-21</div>
+            <div class="timeline-desc">Ramp to 85% &rarr; stabilize at 92%</div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top: 2rem;">
+          Revenue begins Month 10. Occupancy ramps from 60% to stabilized 92% over 18 months of operations.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 09: RISK ASSESSMENT (Accordion Rows)
+       ═══════════════════════════════════════════════════════ -->
+  <section>
+    <div class="section">
+      <div class="reveal">
+        <div class="section-num">Section 09</div>
+        <h2>Risk Assessment</h2>
+        <div class="section-divider"></div>
+        <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 1.5rem;">Click any row to expand mitigation details.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="table-wrap">
+          <table id="riskTable">
+            <thead>
+              <tr><th>Risk</th><th style="width:100px;">Likelihood</th><th style="width:80px;">Impact</th></tr>
+            </thead>
+            <tbody>
+              <tr class="risk-row" data-risk="r1">
+                <td>Occupancy below projections</td>
+                <td class="risk-med">Medium</td>
+                <td class="risk-high">High</td>
+              </tr>
+              <tr class="risk-detail" data-risk="r1">
+                <td colspan="3"><strong>Mitigation:</strong> Multi-channel distribution (Airbnb + Furnished Finder + direct), flexible pricing, weekly/monthly discounts to fill gaps</td>
+              </tr>
+
+              <tr class="risk-row" data-risk="r2">
+                <td>Construction cost overruns</td>
+                <td class="risk-med">Medium</td>
+                <td class="risk-med">Medium</td>
+              </tr>
+              <tr class="risk-detail" data-risk="r2">
+                <td colspan="3"><strong>Mitigation:</strong> 10% contingency ($135K), phased draw schedule, fixed-price contracts where possible</td>
+              </tr>
+
+              <tr class="risk-row" data-risk="r3">
+                <td>Interest rate movement</td>
+                <td class="risk-low">Low</td>
+                <td class="risk-low">Low</td>
+              </tr>
+              <tr class="risk-detail" data-risk="r3">
+                <td colspan="3"><strong>Mitigation:</strong> Locked at closing; 5-year term limits refinance exposure</td>
+              </tr>
+
+              <tr class="risk-row" data-risk="r4">
+                <td>Market rate pressure</td>
+                <td class="risk-med">Medium</td>
+                <td class="risk-med">Medium</td>
+              </tr>
+              <tr class="risk-detail" data-risk="r4">
+                <td colspan="3"><strong>Mitigation:</strong> Blended model (nightly/weekly/monthly) provides rate flexibility; can shift mix toward longer stays in soft market</td>
+              </tr>
+
+              <tr class="risk-row" data-risk="r5">
+                <td>Seasonal demand variation</td>
+                <td class="risk-med">Medium</td>
+                <td class="risk-low">Low</td>
+              </tr>
+              <tr class="risk-detail" data-risk="r5">
+                <td colspan="3"><strong>Mitigation:</strong> Monthly stays provide baseline occupancy floor; healthcare workers are year-round</td>
+              </tr>
+
+              <tr class="risk-row" data-risk="r6">
+                <td>Regulatory changes</td>
+                <td class="risk-low">Low</td>
+                <td class="risk-med">Medium</td>
+              </tr>
+              <tr class="risk-detail" data-risk="r6">
+                <td colspan="3"><strong>Mitigation:</strong> RMX-MH zoning is favorable and recently established; hotel-to-hotel conversion faces minimal regulatory friction</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 10: RECOMMENDATIONS & NEXT STEPS
+       ═══════════════════════════════════════════════════════ -->
+  <div class="section-full-gray" id="contact">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <div class="reveal">
+        <div class="section-num">Section 10</div>
+        <h2>Recommendations &amp; Next Steps</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="reveal">
+        <h4>Immediate (0-30 Days)</h4>
+        <ol class="steps" style="margin-bottom: 2rem;">
+          <li>Engage architect for schematic design &amp; unit layouts</li>
+          <li>Obtain contractor bids for renovation scope</li>
+          <li>Begin renovation loan application process</li>
+          <li>Conduct competitive rate analysis (Airbnb, Furnished Finder comps in East Walnut Hills / Hyde Park)</li>
+        </ol>
+      </div>
+
+      <div class="reveal">
+        <h4>Near-Term (30-90 Days)</h4>
+        <ol class="steps" style="counter-reset: step 4; margin-bottom: 2rem;">
+          <li>Finalize unit floor plans and material selections</li>
+          <li>Secure renovation financing</li>
+          <li>Begin permitting process</li>
+          <li>Develop brand identity and booking website</li>
+        </ol>
+      </div>
+
+      <div class="reveal">
+        <h4>Pre-Construction (90-120 Days)</h4>
+        <ol class="steps" style="counter-reset: step 8; margin-bottom: 2.5rem;">
+          <li>Execute construction contract</li>
+          <li>Establish OTA accounts and listing strategy</li>
+          <li>Develop operating procedures and staffing plan</li>
+        </ol>
+      </div>
+
+      <div class="reveal">
+        <div class="services-box">
+          <h4 style="color: var(--emerald-dark); margin-bottom: 0.75rem;">Phase Zero Services Provided</h4>
+          <ul class="checklist">
+            <li>Zoning &amp; entitlement analysis</li>
+            <li>Feasibility pro forma with 5-year projections</li>
+            <li>Capital stack structuring</li>
+            <li>Construction budget &amp; timeline</li>
+            <li>Concept renderings (8 views)</li>
+            <li>Risk assessment &amp; mitigation strategy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER / DISCLAIMER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo-text">The Co-Llab Group</div>
+      <div class="footer-tagline">Phase Zero Advisory Services</div>
+
+      <p>This report was prepared by The Co-Llab Group as part of Phase Zero advisory services.</p>
+      <p>Financial projections are estimates based on assumed market conditions and are not guarantees of future performance. Actual results may differ materially from projections due to changes in market conditions, construction costs, occupancy rates, interest rates, and other factors beyond the control of the developer or advisor.</p>
+      <p>The attached pro forma workbook contains the complete financial model with full formula linkage and sensitivity analysis.</p>
+
+      <div class="footer-contact">
+        <p><strong>Contact</strong></p>
+        <p>The Co-Llab Group<br>Cincinnati, Ohio<br><a href="mailto:collabgroupllc@gmail.com">collabgroupllc@gmail.com</a></p>
+        <a href="mailto:collabgroupllc@gmail.com" class="footer-cta">Get in Touch</a>
+      </div>
+
+      <div class="footer-confidential">
+        Confidential &mdash; This document contains proprietary information and is intended solely for the use of the individual or entity to whom it is addressed.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DOWNLOAD FAB
+       ═══════════════════════════════════════════════════════ -->
+  <div class="download-fab" id="downloadFab">
+    <div class="download-menu" id="downloadMenu">
+      <a href="#"><span class="download-menu-icon">&#128196;</span> Download PDF Report</a>
+      <a href="#"><span class="download-menu-icon">&#128202;</span> Download Financial Model (Excel)</a>
+    </div>
+    <button class="download-fab-btn" id="downloadBtn" aria-label="Download report">
+      &#8615;
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LIGHTBOX
+       ═══════════════════════════════════════════════════════ -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+  (function() {
+    'use strict';
+
+    // ── NAV: Scroll state ──────────────────────────────────
+    var nav = document.getElementById('mainNav');
+    var heroSection = document.getElementById('hero');
+
+    function updateNav() {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // ── NAV: Active section highlighting ───────────────────
+    var navLinksAll = document.querySelectorAll('.nav-links a');
+    var sectionIds = [];
+    navLinksAll.forEach(function(link) {
+      sectionIds.push(link.getAttribute('data-section'));
+    });
+
+    var sectionElements = sectionIds.map(function(id) {
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    var observerNav = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          navLinksAll.forEach(function(link) {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sectionElements.forEach(function(el) {
+      observerNav.observe(el);
+    });
+
+    // ── NAV: Hamburger menu ────────────────────────────────
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ── SCROLL REVEAL ──────────────────────────────────────
+    var reveals = document.querySelectorAll('.reveal');
+    var observerReveal = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observerReveal.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    reveals.forEach(function(el) {
+      observerReveal.observe(el);
+    });
+
+    // ── ANIMATED METRIC COUNTERS ───────────────────────────
+    var metricsAnimated = false;
+    var metricsRow = document.getElementById('metricsRow');
+
+    function animateCounter(el, target, prefix, suffix, isDecimal) {
+      var start = 0;
+      var duration = 1800;
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        // Ease out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = start + (target - start) * eased;
+
+        if (isDecimal) {
+          el.textContent = (prefix || '') + current.toFixed(2) + (suffix || '');
+        } else {
+          el.textContent = (prefix || '') + Math.round(current) + (suffix || '');
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    var observerMetrics = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !metricsAnimated) {
+          metricsAnimated = true;
+          var counters = entry.target.querySelectorAll('.metric-value[data-target]');
+          counters.forEach(function(c) {
+            var target = parseFloat(c.getAttribute('data-target'));
+            var prefix = c.getAttribute('data-prefix') || '';
+            var suffix = c.getAttribute('data-suffix') || '';
+            var isDecimal = c.getAttribute('data-decimal') === 'true';
+            animateCounter(c, target, prefix, suffix, isDecimal);
+          });
+          observerMetrics.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (metricsRow) observerMetrics.observe(metricsRow);
+
+    // ── LIGHTBOX ───────────────────────────────────────────
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var lightboxCaption = document.getElementById('lightboxCaption');
+    var lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.img-half, .img-full').forEach(function(img) {
+      if (img.closest('.hero-bg') || img.closest('.lightbox')) return;
+      img.addEventListener('click', function() {
+        lightboxImg.src = this.src;
+        lightboxImg.alt = this.alt;
+        lightboxCaption.textContent = this.getAttribute('data-caption') || this.alt || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
+    // ── RISK ACCORDION ─────────────────────────────────────
+    document.querySelectorAll('.risk-row').forEach(function(row) {
+      row.addEventListener('click', function() {
+        var riskId = this.getAttribute('data-risk');
+        var detail = document.querySelector('.risk-detail[data-risk="' + riskId + '"]');
+        if (!detail) return;
+
+        var isExpanded = this.classList.contains('expanded');
+        // Close all
+        document.querySelectorAll('.risk-row').forEach(function(r) { r.classList.remove('expanded'); });
+        document.querySelectorAll('.risk-detail').forEach(function(d) { d.classList.remove('visible'); });
+
+        if (!isExpanded) {
+          this.classList.add('expanded');
+          detail.classList.add('visible');
+        }
+      });
+    });
+
+    // ── BUDGET ACCORDION ───────────────────────────────────
+    document.querySelectorAll('.accordion-trigger').forEach(function(trigger) {
+      trigger.addEventListener('click', function() {
+        var group = this.getAttribute('data-group');
+        var children = document.querySelectorAll('.accordion-child[data-group="' + group + '"]');
+        var isExpanded = this.classList.contains('expanded');
+
+        // Toggle
+        this.classList.toggle('expanded');
+        children.forEach(function(child) {
+          child.classList.toggle('visible', !isExpanded);
+        });
+      });
+    });
+
+    // ── DOWNLOAD FAB ───────────────────────────────────────
+    var downloadBtn = document.getElementById('downloadBtn');
+    var downloadMenu = document.getElementById('downloadMenu');
+
+    downloadBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      downloadMenu.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function() {
+      downloadMenu.classList.remove('open');
+    });
+
+    downloadMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+  })();
+  </script>
+
+</body>
+</html>
